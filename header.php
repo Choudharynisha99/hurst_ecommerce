@@ -23,30 +23,36 @@ session_start();
 												<div class="cart-items">
 													<p class="mb-0">You have <span>03 items</span> in your shopping bag</p>
 												</div>
+
+													<?php
+												$cont = mysqli_connect("localhost", "root", "", "hurst") or die();
+												$sqll = "SELECT * FROM `add_product`";
+										        $show = mysqli_query($cont, $sqll);
+												if($show){
+													foreach ($show as $key => $val) {
+														# code...
+													
+												
+												?>
 												<div class="all-cart-product clearfix">
 													<div class="single-cart clearfix">
 														<div class="cart-photo">
-															<a href="#"><img src="img/cart/1.jpg" alt="" /></a>
+															<a href="#"><img src="<?php echo $val['image'];?>" alt="" /></a>
 														</div>
 														<div class="cart-info">
-															<h5><a href="#">dummy product name</a></h5>
-															<p class="mb-0">Price : $ 100.00</p>
+															<h5><a href="#"><?php echo $val['product_name'];?></a></h5>
+															<p class="mb-0">Price : $ <?php echo $val['price'];?></p>
 															<p class="mb-0">Qty : 02 </p>
 															<span class="cart-delete"><a href="#"><i class="zmdi zmdi-close"></i></a></span>
 														</div>
 													</div>
-													<div class="single-cart clearfix">
-														<div class="cart-photo">
-															<a href="#"><img src="img/cart/2.jpg" alt="" /></a>
-														</div>
-														<div class="cart-info">
-															<h5><a href="#">dummy product name</a></h5>
-															<p class="mb-0">Price : $ 300.00</p>
-															<p class="mb-0">Qty : 01 </p>
-															<span class="cart-delete"><a href="#"><i class="zmdi zmdi-close"></i></a></span>
-														</div>
-													</div>
+													
 												</div>
+                                                 <?php
+												 }
+												}
+												 ?>
+
 												<div class="cart-totals">
 													<h5 class="mb-0">Total <span class="floatright">$500.00</span></h5>
 												</div>
